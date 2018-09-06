@@ -68,7 +68,7 @@ def _classify_return_keyword(dVars, oLine):
 
 
 def _classify_end_keyword(dVars, oLine):
-    if oLine.insidePackage:
+    if oLine.insidePackage and not oLine.insidePackageBody:
         if re.match('^.*return\s+\w+;', oLine.line, re.IGNORECASE):
             oLine.isFunctionEnd = True
             if not oLine.isFunctionParameter:
@@ -84,6 +84,12 @@ def _classify_end_keyword(dVars, oLine):
             dVars['iCurrentIndentLevel'] -= 1
             dVars['fFunctionBeginDetected'] = False
             dVars['fFunctionParameterEndDetected'] = False
+        if re.match('.*begin.*end\s+function\s*;\s*$', oLine.line):
+            oLine.isFunctionEnd = True
+            dVars['iCurrentIndentLevel'] -= 1
+            dVars['fFunctionBeginDetected'] = False
+            dVars['fFunctionParameterEndDetected'] = False
+
 
 
 def _classify_parameter(dVars, oLine):
