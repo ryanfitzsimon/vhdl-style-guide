@@ -71,6 +71,7 @@ def _classify_end_procedure_in_package(dVars, oLine):
         dVars['iCloseParenthesis'] = 0
         oLine.isProcedureEnd = True
         dVars['iCurrentIndentLevel'] -= 1
+        oLine.indentLevel = dVars['iCurrentIndentLevel']
         dVars['fProcedureParameterEndDetected'] = False
         dVars['fProcedureIsDetected'] = False
         dVars['fProcedureBeginDetected'] = False
