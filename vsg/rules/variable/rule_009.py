@@ -4,7 +4,7 @@ from vsg.rules import keyword_alignment_rule
 
 class rule_009(keyword_alignment_rule):
     '''
-    Signal rule 009 checks the colons are in the same column for all variables.
+    Variable rule 009 checks the colons are in the same column for all variables.
     '''
 
     def __init__(self):
@@ -12,5 +12,5 @@ class rule_009(keyword_alignment_rule):
         self.solution = 'Align colon with right most colon.'
         self.sKeyword = ':'
         self.sStartGroupTrigger = 'isArchitectureKeyword'
-        self.sEndGroupTrigger = 'isEndArchitecture'
+        self.sEndGroupTrigger = 'isArchitectureBegin'
         self.sLineTrigger = 'isVariable'
