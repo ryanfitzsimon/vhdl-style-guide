@@ -3,6 +3,9 @@ import re
 
 def variable_assignment(dVars, oLine):
 
+    if (oLine.isProcedureParameter or oLine.isFunctionParameter):
+        return
+
     if not (oLine.insideProcess or oLine.insideFunction or oLine.insideProcedure):
         return
 
