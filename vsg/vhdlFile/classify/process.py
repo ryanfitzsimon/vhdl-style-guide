@@ -3,7 +3,7 @@ import re
 
 def process(dVars, oLine):
     classify_process_keyword(dVars, oLine)
-    if oLine.insideProcess:
+    if oLine.insideProcess and not oLine.insideProcedure and not oLine.insideFunction:
         classify_process_sensitivity_list(dVars, oLine)
         classify_process_begin_keyword(dVars, oLine)
         classify_process_end_keyword(dVars, oLine)
