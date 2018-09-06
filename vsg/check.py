@@ -108,11 +108,15 @@ def is_blank_line_before(self, oFile, iLineNumber, sUnless):
 
       sUnless: (string) (line attribute)
     '''
+    i = iLineNumber - 1
+    while i > 2 and oFile.lines[i].isComment:
+        i -= 1
+
     if sUnless:
-        if not oFile.lines[iLineNumber - 1].isBlank:
-            if not oFile.lines[iLineNumber - 1].__dict__[sUnless]:
+        if not oFile.lines[i].isBlank:
+            if not oFile.lines[i].__dict__[sUnless]:
                 self.add_violation(iLineNumber)
-    elif not oFile.lines[iLineNumber - 1].isBlank:
+    elif not oFile.lines[i].isBlank:
         self.add_violation(iLineNumber)
 
 
