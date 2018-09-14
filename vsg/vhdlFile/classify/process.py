@@ -14,10 +14,12 @@ def classify_process_keyword(dVars, oLine):
         oLine.isProcessKeyword = True
         oLine.insideProcess = True
         oLine.indentLevel = dVars['iCurrentIndentLevel']
+        dVars['iCurrentIndentLevel'] += 1
     if re.match('^\s*\S+\s*:\s*process', oLine.lineLower):
         oLine.isProcessKeyword = True
         oLine.insideProcess = True
         oLine.indentLevel = dVars['iCurrentIndentLevel']
+        dVars['iCurrentIndentLevel'] += 1
         oLine.isProcessLabel = True
 
 
@@ -34,7 +36,6 @@ def classify_process_sensitivity_list(dVars, oLine):
             oLine.isSensitivityListEnd = True
             dVars['iOpenParenthesis'] = 0
             dVars['iCloseParenthesis'] = 0
-            dVars['iCurrentIndentLevel'] += 1
 
 
 def classify_process_begin_keyword(dVars, oLine):
