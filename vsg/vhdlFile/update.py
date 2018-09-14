@@ -158,9 +158,12 @@ def update_generate_attributes(dVars, oPreviousLine, oCurrentLine):
         oCurrentLine.insideGenerate = True
 
 
-def update_for_loop_attributes(oPreviousLine, oCurrentLine):
+def update_for_loop_attributes(dVars, oPreviousLine, oCurrentLine):
 
-    if oPreviousLine.insideForLoop and not oPreviousLine.isForLoopEnd:
+    if oPreviousLine.insideForLoop and oPreviousLine.isForLoopEnd:
+        if dVars['iForLoopLevel'] > 0:
+            oCurrentLine.insideForLoop = True
+    elif oPreviousLine.insideForLoop and not oPreviousLine.isForLoopEnd:
         oCurrentLine.insideForLoop = True
 
 
@@ -221,7 +224,7 @@ def inside_attributes(dVars, oPreviousLine, oCurrentLine):
     update_procedure_attributes(oPreviousLine, oCurrentLine)
     update_function_attributes(oPreviousLine, oCurrentLine)
     update_generate_attributes(dVars, oPreviousLine, oCurrentLine)
-    update_for_loop_attributes(oPreviousLine, oCurrentLine)
+    update_for_loop_attributes(dVars, oPreviousLine, oCurrentLine)
     update_while_loop_attributes(oPreviousLine, oCurrentLine)
     update_attribute_attributes(oPreviousLine, oCurrentLine)
     update_file_attributes(oPreviousLine, oCurrentLine)
