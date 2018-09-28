@@ -10,7 +10,7 @@ def block(self, dVars, oLine):
 
 
 def classify_block_keyword(self, dVars, oLine):
-    if (re.match('^\s*block', oLine.lineNoComment) or re.match('^\s*\w+\s*:\s*block', oLine.lineNoComment)):
+    if (re.match('^\s*block\s', oLine.lineNoComment) or re.match('^\s*\w+\s*:\s*block', oLine.lineNoComment)):
         oLine.isBlockKeyword = True
         oLine.insideBlock = True
         oLine.indentLevel = dVars['iCurrentIndentLevel']
