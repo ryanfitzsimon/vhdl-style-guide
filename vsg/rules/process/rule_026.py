@@ -20,6 +20,8 @@ class rule_026(rule.rule):
         iFailingLineNumber = 0
         for iLineNumber, oLine in enumerate(oFile.lines):
             if oLine.insideProcess:
+                if (oLine.isProcessKeyword and (not oLine.isSensitivityListBegin) and (not oFile.lines[iLineNumber + 1].isSensitivityListBegin)):
+                    fSkipProcess = True
                 if oLine.isProcessBegin and oLine.isSensitivityListEnd:
                     fSkipProcess = True
                 if oLine.isSensitivityListEnd and oFile.lines[iLineNumber + 1].isProcessBegin:
